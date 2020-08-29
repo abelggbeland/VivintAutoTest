@@ -1,7 +1,3 @@
-import requests
-from requests.auth import HTTPBasicAuth
-import json
-
 class data:
     def __init__(self, BadgeID, Assets, Peripherals, PeripheralsAdds):
         self.__BadgeID = BadgeID

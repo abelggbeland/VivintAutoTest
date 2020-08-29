@@ -1,7 +1,22 @@
 import Data
 import Sender
+import os
+import base64
+import APICalls
+
 
 def main():
+    #Chech to see if Auth file exist
+    if not os.path.exists("Credentials"):
+        f = open("Credentials", "w+")
+        #ask for login
+        email = input("Enter email: ")
+        APIKey = input("Enter API Key: ")
+        f.write(base64.b64encode(email.encode()).decode() + "\n")
+        f.write(base64.b64encode(APIKey.encode()).decode())
+        f.close()
+
+
     BadgeID = input("Please enter Badge ID")
     Assets = []
     Peripherals = []
@@ -24,7 +39,7 @@ def main():
     getPeripherals(PeripheralsAdds)
 
     data = Data.data(BadgeID, Assets, Peripherals, PeripheralsAdds)
-    Sender.send(data)
+    Sender.send(APICalls.makeIssue(data), "https://vivint.atlassian.net/rest/api/3/issue")
 
     #TODO setup data
 
