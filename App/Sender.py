@@ -3,8 +3,6 @@ from requests.auth import HTTPBasicAuth
 import json
 import base64
 
-
-
 def send(payload, url):
     headers = {
         "Accept": "application/json",
